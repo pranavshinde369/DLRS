@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/dlrs/schemas/registry-entry.schema.json",
+  "title": "DLRS Registry Entry",
+  "type": "object",
+  "required": [
+    "record_id",
+    "path",
+    "display_name",
+    "visibility",
+    "badges",
+    "region",
+    "locale",
+    "risk_level",
+    "updated_at"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "visibility": {
+      "type": "string"
+    },
+    "badges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "region": {
+      "type": "string"
+    },
+    "locale": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://cn-shanghai/audio/voice_master_zh-CN_48k24b_take01.wav",
+  "checksum": "sha256:example_voice_hash",
+  "region": "CN",
+  "format": "wav",
+  "size_bytes": 98765432,
+  "sensitivity": "S3_BIOMETRIC",
+  "access_policy": "private_runtime_only"
+}

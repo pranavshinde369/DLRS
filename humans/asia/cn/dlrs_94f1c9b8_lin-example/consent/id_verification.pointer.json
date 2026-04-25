@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://cn-shanghai/kyc/id_verification_result.json",
+  "checksum": "sha256:example_idv_hash",
+  "region": "CN",
+  "format": "json",
+  "size_bytes": 2048,
+  "sensitivity": "S4_RESTRICTED",
+  "access_policy": "legal_review_only"
+}

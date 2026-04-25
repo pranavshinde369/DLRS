@@ -1,0 +1,28 @@
+{
+  "asia": [
+    "cn",
+    "jp",
+    "kr",
+    "sg",
+    "in"
+  ],
+  "europe": [
+    "eu",
+    "de",
+    "fr",
+    "uk"
+  ],
+  "north-america": [
+    "us",
+    "ca"
+  ],
+  "south-america": [],
+  "africa": [],
+  "oceania": [
+    "au",
+    "nz"
+  ],
+  "global": [
+    "public-data-only"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://cn-shanghai/derived/embeddings.index",
+  "checksum": "sha256:example_embeddings_hash",
+  "region": "CN",
+  "format": "faiss",
+  "size_bytes": 456789,
+  "sensitivity": "S2_SENSITIVE",
+  "access_policy": "private_runtime_only"
+}

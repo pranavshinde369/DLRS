@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://cn-shanghai/video/talking_head_train_1080p25_take03.mp4",
+  "checksum": "sha256:example_video_hash",
+  "region": "CN",
+  "format": "mp4",
+  "size_bytes": 234567890,
+  "sensitivity": "S3_BIOMETRIC",
+  "access_policy": "private_runtime_only"
+}

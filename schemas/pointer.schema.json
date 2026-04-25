@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/dlrs/schemas/pointer.schema.json",
+  "title": "DLRS Artifact Pointer",
+  "type": "object",
+  "required": [
+    "storage_uri",
+    "checksum",
+    "region",
+    "format",
+    "sensitivity",
+    "access_policy"
+  ],
+  "properties": {
+    "storage_uri": {
+      "type": "string"
+    },
+    "checksum": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "size_bytes": {
+      "type": "integer"
+    },
+    "sensitivity": {
+      "type": "string"
+    },
+    "access_policy": {
+      "type": "string"
+    }
+  }
+}

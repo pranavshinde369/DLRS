@@ -1,0 +1,22 @@
+{
+  "verified-consent": {
+    "label": "Verified Consent",
+    "description": "Consent evidence has been reviewed."
+  },
+  "public-data-only": {
+    "label": "Public Data Only",
+    "description": "Record is based on public data only and does not include high-fidelity biometric cloning."
+  },
+  "restricted-runtime": {
+    "label": "Restricted Runtime",
+    "description": "Runtime access is private or limited."
+  },
+  "cross-border-blocked": {
+    "label": "Cross-border Blocked",
+    "description": "No cross-border copy or inference is allowed."
+  },
+  "memorial-review-required": {
+    "label": "Memorial Review Required",
+    "description": "Memorial or estate-authorized record requiring additional review."
+  }
+}

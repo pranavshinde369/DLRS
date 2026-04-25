@@ -1,0 +1,6 @@
+{
+  "runtime_visibility": "private",
+  "public_sessions": false,
+  "requires_auth": true,
+  "output_disclosure": true
+}

@@ -1,0 +1,29 @@
+openapi: 3.1.0
+info:
+  title: DLRS Hub API Draft
+  version: 0.2.0
+paths:
+  /records:
+    post:
+      summary: Create a human digital life record
+      responses:
+        '201':
+          description: Created
+  /records/{recordId}/withdraw:
+    post:
+      summary: Withdraw consent and freeze runtime
+      parameters:
+        - in: path
+          name: recordId
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Withdrawal accepted
+  /registry/humans:
+    get:
+      summary: List public indexed human records
+      responses:
+        '200':
+          description: Registry returned

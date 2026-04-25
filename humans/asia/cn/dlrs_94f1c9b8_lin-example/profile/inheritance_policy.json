@@ -1,0 +1,5 @@
+{
+  "default_action_on_death": "freeze",
+  "executor_contact_ref": null,
+  "memorial_mode_requires_review": true
+}

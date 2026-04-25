@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/dlrs/schemas/public-profile.schema.json",
+  "title": "DLRS Public Profile",
+  "type": "object",
+  "required": [
+    "record_id",
+    "display_name",
+    "summary",
+    "ai_disclosure",
+    "allowed_public_interactions"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "avatar_preview_uri": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ai_disclosure": {
+      "type": "string"
+    },
+    "allowed_public_interactions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/dlrs/schemas/consent.schema.json",
+  "title": "DLRS Consent Metadata",
+  "type": "object",
+  "required": [
+    "subject_role",
+    "consent_version",
+    "captured_at",
+    "scopes",
+    "withdrawal_endpoint"
+  ],
+  "properties": {
+    "subject_role": {
+      "type": "string"
+    },
+    "consent_version": {
+      "type": "string"
+    },
+    "captured_at": {
+      "type": "string"
+    },
+    "scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "withdrawal_endpoint": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

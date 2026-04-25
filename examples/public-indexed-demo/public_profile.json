@@ -1,0 +1,11 @@
+{
+  "record_id": "dlrs_EXAMPLE_public_indexed_demo",
+  "display_name": "public-indexed-demo",
+  "summary": "一个用于演示 DLRS Hub 目录结构的虚构自愿参与者档案。",
+  "avatar_preview_uri": null,
+  "ai_disclosure": "本档案如产生公开输出，均为 AI 生成或 AI 辅助生成，不代表真人主体的真实、即时、完整或最终意思表示。",
+  "allowed_public_interactions": [
+    "view_profile",
+    "request_private_contact"
+  ]
+}

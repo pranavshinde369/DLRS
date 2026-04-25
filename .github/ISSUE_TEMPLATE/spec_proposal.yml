@@ -1,0 +1,15 @@
+name: Spec Proposal
+about: Propose a change to DLRS standard
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility impact

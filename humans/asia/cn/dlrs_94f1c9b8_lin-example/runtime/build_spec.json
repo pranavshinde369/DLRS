@@ -1,0 +1,7 @@
+{
+  "runtime_version": "0.2.0",
+  "text_persona": "rag_profile_only",
+  "voice_profile": "external_pointer",
+  "avatar_profile": "vrm_or_gltf_pointer",
+  "public_runtime_allowed": false
+}

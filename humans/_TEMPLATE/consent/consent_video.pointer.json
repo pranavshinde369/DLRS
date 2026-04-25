@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://REPLACE_ME",
+  "checksum": "sha256:REPLACE_ME",
+  "region": "REPLACE_ME",
+  "format": "REPLACE_ME",
+  "size_bytes": 0,
+  "sensitivity": "S2_SENSITIVE",
+  "access_policy": "private"
+}

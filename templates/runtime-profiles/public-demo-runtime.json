@@ -1,0 +1,12 @@
+{
+  "runtime_visibility": "public_demo",
+  "public_sessions": true,
+  "requires_ai_disclosure": true,
+  "max_session_minutes": 5,
+  "restricted_topics": [
+    "medical",
+    "legal",
+    "financial",
+    "political_persuasion"
+  ]
+}

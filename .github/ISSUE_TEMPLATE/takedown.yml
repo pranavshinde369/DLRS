@@ -1,0 +1,19 @@
+name: Takedown Request
+about: Request freezing, delisting, or takedown of a record
+body:
+  - type: input
+    id: record_id
+    attributes:
+      label: Record ID
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+  - type: input
+    id: contact
+    attributes:
+      label: Contact

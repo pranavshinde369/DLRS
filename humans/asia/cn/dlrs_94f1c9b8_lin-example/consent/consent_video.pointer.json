@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://cn-shanghai/consent/consent_20260425_self.mp4",
+  "checksum": "sha256:example_consent_video_hash",
+  "region": "CN",
+  "format": "mp4",
+  "size_bytes": 12345678,
+  "sensitivity": "S3_BIOMETRIC",
+  "access_policy": "reviewers_only"
+}

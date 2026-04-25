@@ -1,0 +1,8 @@
+{
+  "storage_uri": "obj://cn-shanghai/runtime/adapters/lin-example",
+  "checksum": "sha256:example_adapter_hash",
+  "region": "CN",
+  "format": "adapter_bundle",
+  "sensitivity": "S2_SENSITIVE",
+  "access_policy": "no_public_download"
+}

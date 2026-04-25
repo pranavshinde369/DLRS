@@ -1,0 +1,9 @@
+{
+  "storage_uri": "obj://cn-shanghai/audit/access_log.jsonl",
+  "checksum": "sha256:example_access_log_hash",
+  "region": "CN",
+  "format": "jsonl",
+  "size_bytes": 1024,
+  "sensitivity": "S2_SENSITIVE",
+  "access_policy": "auditors_only"
+}

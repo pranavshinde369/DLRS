@@ -1,0 +1,10 @@
+{
+  "max_public_session_minutes": 0,
+  "requires_ai_disclosure": true,
+  "forbidden_uses": [
+    "identity_verification",
+    "medical_advice",
+    "legal_advice",
+    "political_persuasion"
+  ]
+}

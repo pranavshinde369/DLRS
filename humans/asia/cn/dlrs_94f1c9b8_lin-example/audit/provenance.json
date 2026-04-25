@@ -1,0 +1,12 @@
+{
+  "record_id": "dlrs_94f1c9b8",
+  "events": [
+    {
+      "event_id": "evt_001",
+      "event_type": "record_created",
+      "actor_role": "participant",
+      "timestamp": "2026-04-25T10:45:00+08:00",
+      "reason": "initial demo record"
+    }
+  ]
+}
