@@ -1,0 +1,345 @@
+{
+  "terminology": {
+    "digital_life": {
+      "en-US": "Digital Life",
+      "zh-CN": "数字生命",
+      "ja-JP": "デジタルライフ",
+      "ko-KR": "디지털 라이프",
+      "fr-FR": "Vie Numérique",
+      "de-DE": "Digitales Leben",
+      "es-ES": "Vida Digital"
+    },
+    "record": {
+      "en-US": "Record",
+      "zh-CN": "档案",
+      "ja-JP": "レコード",
+      "ko-KR": "기록",
+      "fr-FR": "Dossier",
+      "de-DE": "Aufzeichnung",
+      "es-ES": "Registro"
+    },
+    "consent": {
+      "en-US": "Consent",
+      "zh-CN": "同意",
+      "ja-JP": "同意",
+      "ko-KR": "동의",
+      "fr-FR": "Consentement",
+      "de-DE": "Einwilligung",
+      "es-ES": "Consentimiento"
+    },
+    "pointer": {
+      "en-US": "Pointer",
+      "zh-CN": "指针",
+      "ja-JP": "ポインタ",
+      "ko-KR": "포인터",
+      "fr-FR": "Pointeur",
+      "de-DE": "Zeiger",
+      "es-ES": "Puntero"
+    },
+    "artifact": {
+      "en-US": "Artifact",
+      "zh-CN": "制品",
+      "ja-JP": "アーティファクト",
+      "ko-KR": "아티팩트",
+      "fr-FR": "Artefact",
+      "de-DE": "Artefakt",
+      "es-ES": "Artefacto"
+    },
+    "manifest": {
+      "en-US": "Manifest",
+      "zh-CN": "清单",
+      "ja-JP": "マニフェスト",
+      "ko-KR": "매니페스트",
+      "fr-FR": "Manifeste",
+      "de-DE": "Manifest",
+      "es-ES": "Manifiesto"
+    },
+    "badge": {
+      "en-US": "Badge",
+      "zh-CN": "徽章",
+      "ja-JP": "バッジ",
+      "ko-KR": "배지",
+      "fr-FR": "Badge",
+      "de-DE": "Abzeichen",
+      "es-ES": "Insignia"
+    },
+    "takedown": {
+      "en-US": "Takedown",
+      "zh-CN": "下架",
+      "ja-JP": "削除",
+      "ko-KR": "삭제",
+      "fr-FR": "Retrait",
+      "de-DE": "Entfernung",
+      "es-ES": "Eliminación"
+    },
+    "withdrawal": {
+      "en-US": "Withdrawal",
+      "zh-CN": "撤回",
+      "ja-JP": "撤回",
+      "ko-KR": "철회",
+      "fr-FR": "Retrait",
+      "de-DE": "Widerruf",
+      "es-ES": "Retiro"
+    },
+    "visibility": {
+      "en-US": "Visibility",
+      "zh-CN": "可见性",
+      "ja-JP": "可視性",
+      "ko-KR": "가시성",
+      "fr-FR": "Visibilité",
+      "de-DE": "Sichtbarkeit",
+      "es-ES": "Visibilidad"
+    },
+    "biometric": {
+      "en-US": "Biometric",
+      "zh-CN": "生物识别",
+      "ja-JP": "生体認証",
+      "ko-KR": "생체 인식",
+      "fr-FR": "Biométrique",
+      "de-DE": "Biometrisch",
+      "es-ES": "Biométrico"
+    },
+    "audit": {
+      "en-US": "Audit",
+      "zh-CN": "审计",
+      "ja-JP": "監査",
+      "ko-KR": "감사",
+      "fr-FR": "Audit",
+      "de-DE": "Prüfung",
+      "es-ES": "Auditoría"
+    },
+    "provenance": {
+      "en-US": "Provenance",
+      "zh-CN": "来源",
+      "ja-JP": "出所",
+      "ko-KR": "출처",
+      "fr-FR": "Provenance",
+      "de-DE": "Herkunft",
+      "es-ES": "Procedencia"
+    },
+    "guardian": {
+      "en-US": "Guardian",
+      "zh-CN": "监护人",
+      "ja-JP": "保護者",
+      "ko-KR": "보호자",
+      "fr-FR": "Tuteur",
+      "de-DE": "Vormund",
+      "es-ES": "Tutor"
+    },
+    "deceased": {
+      "en-US": "Deceased",
+      "zh-CN": "已故",
+      "ja-JP": "故人",
+      "ko-KR": "고인",
+      "fr-FR": "Décédé",
+      "de-DE": "Verstorben",
+      "es-ES": "Fallecido"
+    },
+    "inheritance": {
+      "en-US": "Inheritance",
+      "zh-CN": "继承",
+      "ja-JP": "相続",
+      "ko-KR": "상속",
+      "fr-FR": "Héritage",
+      "de-DE": "Vererbung",
+      "es-ES": "Herencia"
+    },
+    "voice_clone": {
+      "en-US": "Voice Clone",
+      "zh-CN": "语音克隆",
+      "ja-JP": "音声クローン",
+      "ko-KR": "음성 복제",
+      "fr-FR": "Clone Vocal",
+      "de-DE": "Stimmklon",
+      "es-ES": "Clon de Voz"
+    },
+    "avatar_clone": {
+      "en-US": "Avatar Clone",
+      "zh-CN": "虚拟形象克隆",
+      "ja-JP": "アバタークローン",
+      "ko-KR": "아바타 복제",
+      "fr-FR": "Clone d'Avatar",
+      "de-DE": "Avatar-Klon",
+      "es-ES": "Clon de Avatar"
+    },
+    "watermark": {
+      "en-US": "Watermark",
+      "zh-CN": "水印",
+      "ja-JP": "透かし",
+      "ko-KR": "워터마크",
+      "fr-FR": "Filigrane",
+      "de-DE": "Wasserzeichen",
+      "es-ES": "Marca de Agua"
+    },
+    "cross_border": {
+      "en-US": "Cross-Border",
+      "zh-CN": "跨境",
+      "ja-JP": "越境",
+      "ko-KR": "국경 간",
+      "fr-FR": "Transfrontalier",
+      "de-DE": "Grenzüberschreitend",
+      "es-ES": "Transfronterizo"
+    }
+  },
+  "visibility_levels": {
+    "private": {
+      "en-US": "Private",
+      "zh-CN": "私有",
+      "ja-JP": "プライベート",
+      "ko-KR": "비공개",
+      "fr-FR": "Privé",
+      "de-DE": "Privat",
+      "es-ES": "Privado"
+    },
+    "public_unlisted": {
+      "en-US": "Public (Unlisted)",
+      "zh-CN": "公开（不索引）",
+      "ja-JP": "公開（非掲載）",
+      "ko-KR": "공개 (비등록)",
+      "fr-FR": "Public (Non Répertorié)",
+      "de-DE": "Öffentlich (Nicht Gelistet)",
+      "es-ES": "Público (No Listado)"
+    },
+    "public_indexed": {
+      "en-US": "Public (Indexed)",
+      "zh-CN": "公开（可索引）",
+      "ja-JP": "公開（掲載）",
+      "ko-KR": "공개 (등록)",
+      "fr-FR": "Public (Indexé)",
+      "de-DE": "Öffentlich (Indexiert)",
+      "es-ES": "Público (Indexado)"
+    }
+  },
+  "sensitivity_levels": {
+    "S0_PUBLIC": {
+      "en-US": "Public",
+      "zh-CN": "公开",
+      "ja-JP": "公開",
+      "ko-KR": "공개",
+      "fr-FR": "Public",
+      "de-DE": "Öffentlich",
+      "es-ES": "Público"
+    },
+    "S1_INTERNAL": {
+      "en-US": "Internal",
+      "zh-CN": "内部",
+      "ja-JP": "内部",
+      "ko-KR": "내부",
+      "fr-FR": "Interne",
+      "de-DE": "Intern",
+      "es-ES": "Interno"
+    },
+    "S2_CONFIDENTIAL": {
+      "en-US": "Confidential",
+      "zh-CN": "机密",
+      "ja-JP": "機密",
+      "ko-KR": "기밀",
+      "fr-FR": "Confidentiel",
+      "de-DE": "Vertraulich",
+      "es-ES": "Confidencial"
+    },
+    "S3_BIOMETRIC": {
+      "en-US": "Biometric",
+      "zh-CN": "生物识别",
+      "ja-JP": "生体認証",
+      "ko-KR": "생체 인식",
+      "fr-FR": "Biométrique",
+      "de-DE": "Biometrisch",
+      "es-ES": "Biométrico"
+    },
+    "S4_IDENTITY": {
+      "en-US": "Identity Document",
+      "zh-CN": "身份证明",
+      "ja-JP": "身分証明",
+      "ko-KR": "신원 증명",
+      "fr-FR": "Document d'Identité",
+      "de-DE": "Identitätsdokument",
+      "es-ES": "Documento de Identidad"
+    }
+  },
+  "status": {
+    "pending": {
+      "en-US": "Pending",
+      "zh-CN": "待审核",
+      "ja-JP": "保留中",
+      "ko-KR": "대기 중",
+      "fr-FR": "En Attente",
+      "de-DE": "Ausstehend",
+      "es-ES": "Pendiente"
+    },
+    "approved_public": {
+      "en-US": "Approved (Public)",
+      "zh-CN": "已批准（公开）",
+      "ja-JP": "承認済み（公開）",
+      "ko-KR": "승인됨 (공개)",
+      "fr-FR": "Approuvé (Public)",
+      "de-DE": "Genehmigt (Öffentlich)",
+      "es-ES": "Aprobado (Público)"
+    },
+    "rejected": {
+      "en-US": "Rejected",
+      "zh-CN": "已拒绝",
+      "ja-JP": "却下",
+      "ko-KR": "거부됨",
+      "fr-FR": "Rejeté",
+      "de-DE": "Abgelehnt",
+      "es-ES": "Rechazado"
+    },
+    "living": {
+      "en-US": "Living",
+      "zh-CN": "在世",
+      "ja-JP": "存命",
+      "ko-KR": "생존",
+      "fr-FR": "Vivant",
+      "de-DE": "Lebend",
+      "es-ES": "Vivo"
+    },
+    "deceased": {
+      "en-US": "Deceased",
+      "zh-CN": "已故",
+      "ja-JP": "故人",
+      "ko-KR": "고인",
+      "fr-FR": "Décédé",
+      "de-DE": "Verstorben",
+      "es-ES": "Fallecido"
+    }
+  },
+  "badges": {
+    "verified_consent": {
+      "en-US": "Verified Consent",
+      "zh-CN": "已验证同意",
+      "ja-JP": "同意確認済み",
+      "ko-KR": "동의 확인됨",
+      "fr-FR": "Consentement Vérifié",
+      "de-DE": "Verifizierte Einwilligung",
+      "es-ES": "Consentimiento Verificado"
+    },
+    "public_data_only": {
+      "en-US": "Public Data Only",
+      "zh-CN": "仅公开数据",
+      "ja-JP": "公開データのみ",
+      "ko-KR": "공개 데이터만",
+      "fr-FR": "Données Publiques Uniquement",
+      "de-DE": "Nur Öffentliche Daten",
+      "es-ES": "Solo Datos Públicos"
+    },
+    "research_approved": {
+      "en-US": "Research Approved",
+      "zh-CN": "研究用途批准",
+      "ja-JP": "研究承認済み",
+      "ko-KR": "연구 승인됨",
+      "fr-FR": "Recherche Approuvée",
+      "de-DE": "Forschung Genehmigt",
+      "es-ES": "Investigación Aprobada"
+    },
+    "commercial_licensed": {
+      "en-US": "Commercial Licensed",
+      "zh-CN": "商业授权",
+      "ja-JP": "商用ライセンス",
+      "ko-KR": "상업 라이선스",
+      "fr-FR": "Licence Commerciale",
+      "de-DE": "Kommerzielle Lizenz",
+      "es-ES": "Licencia Comercial"
+    }
+  }
+}

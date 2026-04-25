@@ -1,0 +1,169 @@
+# DLRS Hub Internationalization Configuration
+# This file defines supported locales and their metadata
+
+locales:
+  zh-CN:
+    name: "简体中文"
+    native_name: "简体中文"
+    status: "complete"
+    maintainer: "Core Team"
+    direction: "ltr"
+    date_format: "YYYY年MM月DD日"
+    time_format: "HH:mm:ss"
+    timezone_example: "+08:00"
+    region_examples:
+      - "CN"
+      - "SG"
+    files:
+      - "README.md"
+      - "docs/getting-started.md"
+      - "docs/FAQ.md"
+      - "CONTRIBUTING.md"
+    
+  en-US:
+    name: "English"
+    native_name: "English"
+    status: "complete"
+    maintainer: "Core Team"
+    direction: "ltr"
+    date_format: "Month DD, YYYY"
+    time_format: "HH:mm:ss"
+    timezone_example: "-05:00"
+    region_examples:
+      - "US"
+      - "GB"
+      - "CA"
+      - "AU"
+    files:
+      - "README.en.md"
+      - "docs/getting-started.en.md"
+      - "docs/FAQ.en.md"
+      - "CONTRIBUTING.en.md"
+    
+  ja-JP:
+    name: "Japanese"
+    native_name: "日本語"
+    status: "in_progress"
+    maintainer: "Community"
+    direction: "ltr"
+    date_format: "YYYY年MM月DD日"
+    time_format: "HH:mm:ss"
+    timezone_example: "+09:00"
+    region_examples:
+      - "JP"
+    files:
+      - "README.ja.md"
+    
+  ko-KR:
+    name: "Korean"
+    native_name: "한국어"
+    status: "planned"
+    maintainer: "Community"
+    direction: "ltr"
+    date_format: "YYYY년 MM월 DD일"
+    time_format: "HH:mm:ss"
+    timezone_example: "+09:00"
+    region_examples:
+      - "KR"
+    files: []
+    
+  fr-FR:
+    name: "French"
+    native_name: "Français"
+    status: "planned"
+    maintainer: "Community"
+    direction: "ltr"
+    date_format: "DD/MM/YYYY"
+    time_format: "HH:mm:ss"
+    timezone_example: "+01:00"
+    region_examples:
+      - "FR"
+      - "BE"
+      - "CH"
+      - "CA"
+    files: []
+    
+  de-DE:
+    name: "German"
+    native_name: "Deutsch"
+    status: "planned"
+    maintainer: "Community"
+    direction: "ltr"
+    date_format: "DD.MM.YYYY"
+    time_format: "HH:mm:ss"
+    timezone_example: "+01:00"
+    region_examples:
+      - "DE"
+      - "AT"
+      - "CH"
+    files: []
+    
+  es-ES:
+    name: "Spanish"
+    native_name: "Español"
+    status: "planned"
+    maintainer: "Community"
+    direction: "ltr"
+    date_format: "DD/MM/YYYY"
+    time_format: "HH:mm:ss"
+    timezone_example: "+01:00"
+    region_examples:
+      - "ES"
+      - "MX"
+      - "AR"
+      - "CO"
+    files: []
+
+# Default locale (fallback)
+default_locale: "zh-CN"
+
+# Locale detection priority
+detection_priority:
+  - "url_parameter"      # ?lang=en-US
+  - "user_preference"    # manifest.json locale field
+  - "browser_language"   # Accept-Language header
+  - "default"           # Fall back to default_locale
+
+# Translation status indicators
+status_indicators:
+  complete: "✅"
+  in_progress: "🚧"
+  planned: "📝"
+  outdated: "⚠️"
+
+# File naming patterns
+file_patterns:
+  documentation: "{filename}.{locale}.{extension}"
+  templates: "{filename}.{locale}.{extension}"
+  examples: "{dirname}/{locale}/{filename}.{extension}"
+
+# Required translations for public records
+required_translations:
+  public_indexed:
+    - "public_profile.json"
+    - "consent/consent_statement.md"
+  public_unlisted:
+    - "public_profile.json"
+  private: []
+
+# Locale-specific validation rules
+validation_rules:
+  zh-CN:
+    display_name_pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9\\s]{1,50}$"
+    bio_max_length: 200
+  en-US:
+    display_name_pattern: "^[a-zA-Z0-9\\s]{1,50}$"
+    bio_max_length: 500
+  ja-JP:
+    display_name_pattern: "^[\\u3040-\\u309F\\u30A0-\\u30FF\\u4e00-\\u9fa5a-zA-Z0-9\\s]{1,50}$"
+    bio_max_length: 200
+  ko-KR:
+    display_name_pattern: "^[\\uAC00-\\uD7A3a-zA-Z0-9\\s]{1,50}$"
+    bio_max_length: 200
+
+# Contact information for translation team
+translation_team:
+  email: "i18n@example.org"
+  discord: "https://discord.gg/dlrs-i18n"
+  github_label: "i18n"
+  coordinator: "@i18n-coordinator"
