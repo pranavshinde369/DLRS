@@ -85,7 +85,11 @@ def main() -> int:
         "results": results,
     }
     out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\nreport: {out_path.relative_to(ROOT)}")
+    try:
+        display_path = out_path.resolve().relative_to(ROOT)
+    except ValueError:
+        display_path = out_path
+    print(f"\nreport: {display_path}")
     print(f"summary: {report['step_count']-report['step_failures']}/{report['step_count']} passed")
 
     return 0 if overall_pass else 1
