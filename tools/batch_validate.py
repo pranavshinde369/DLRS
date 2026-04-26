@@ -32,6 +32,7 @@ DEFAULT_STEPS = [
     ("validate_media", [sys.executable, str(TOOLS / "validate_media.py")]),
     ("test_registry", [sys.executable, str(TOOLS / "test_registry.py")]),
     ("build_registry", [sys.executable, str(TOOLS / "build_registry.py")]),
+    ("validate_pipelines", [sys.executable, str(TOOLS / "validate_pipelines.py")]),
 ]
 
 
