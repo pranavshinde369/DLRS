@@ -19,9 +19,14 @@ untouched until a pipeline is explicitly run against them.
     `schemas/derived-asset.schema.json`.
   - `pipelines/asr/` — `dummy` (deterministic, no model) and `faster-whisper`
     (lazy-imported, opt-in) backends.
-  - `pipelines/text/` — NFKC normalisation + conservative redaction (emails,
-    CN phone, CN ID, IBAN, IPv4/IPv6, generic passport). `redactions.json`
-    sidecar is auditable without re-leaking matched substrings.
+  - `pipelines/text/` — NFKC normalisation + conservative redaction
+    (priority order: URLs with embedded credentials, emails, CN ID
+    cards, CN mobile phones, IPv4 addresses, credit-card-like 13–19
+    digit runs, generic phone numbers). Replacements use stable
+    category placeholders (`<EMAIL>`, `<PHONE_CN>`, `<ID_CN>`, `<IPV4>`,
+    `<CARD>`, `<PHONE>`, `<URL_WITH_CREDENTIALS>`). `redactions.json`
+    sidecar carries `rule_name + start/end + replacement` only and is
+    auditable without re-leaking matched substrings.
   - `pipelines/vectorization/` — paragraph-aware chunking with absolute char
     offsets, `hash` (deterministic 64-D) and `sentence-transformers` backends,
     optional Qdrant push (`backend` and `model_id` stored as separate

@@ -34,11 +34,12 @@ Every pipeline is registered in `pipelines/__init__.py` with a `PipelineSpec`:
 | Field | Meaning |
 | --- | --- |
 | `name` | Stable id, e.g. `asr`. Must match the `derived/<name>/` output prefix. |
-| `inputs` | Logical input role(s) — `audio`, `transcript`, `text`. |
-| `outputs` | What artefact the pipeline produces — `transcript`, `clean_text`, `index`, `moderation_report`. |
-| `dependencies` | Names of other pipelines that must have run first when chaining inside a record. |
-| `output_pointer_template` | Where outputs go, relative to the record root. **Enforced** by `tools/validate_pipelines.py` to start with `derived/<spec.name>/`. |
-| `register` / `run` | Lifecycle callbacks; `run` is the CLI entrypoint. |
+| `description` | One-line human description shown in `tools/run_pipeline.py --help`. |
+| `inputs` | Accepted input shapes — MIME strings (`audio/wav`, `text/plain`) or filename conventions (`transcript.json`, `text.clean.txt`). Documentation only; not enforced at runtime. |
+| `outputs` | File **basenames** the pipeline writes (`transcript.json`, `clean.txt`, `index.json`, `moderation.json`) plus the matching `*.descriptor.json`. |
+| `dependencies` | Third-party Python packages required at runtime, as pip specifiers (`faster-whisper>=1.0`, `sentence-transformers>=2.7`, `jsonschema>=4.20`, …). Listed for documentation and validation only — they MUST NOT be imported at module top-level (lazy-import inside `run` only), so a missing optional dep doesn't break `--help`. |
+| `output_pointer_template` | Where outputs go, relative to the record root, with `{stem}` placeholder (e.g. `derived/asr/{stem}.transcript.json`). **Enforced** by `tools/validate_pipelines.py` to start with `derived/<spec.name>/`. |
+| `register` / `run` | Lifecycle callbacks; `register(parser)` adds CLI flags, `run(args)` is the CLI entrypoint. |
 
 The contract is enforced at static-validation time, not runtime, so a regression that adds a hosted-API call or a non-`derived/<name>/` output path fails in CI before any pipeline executes. See `tools/validate_pipelines.py`.
 
@@ -77,7 +78,7 @@ A descriptor is the smallest object you can hand to a downstream consumer (audit
 Two backends:
 
 - **`dummy`** (default for tests/demo) — deterministic transcript derived from `sha256(audio bytes)`. No model, no decoding. The transcript is a single segment whose text is `dummy-asr/<sha-prefix>`. Used to unit-test downstream pipelines without bringing in `faster-whisper` and a 200 MB model on every CI run.
-- **`faster-whisper`** — opt-in real backend. Lazy-imported only inside `_run()` so a missing optional dep doesn't break `pipelines.asr` import. Honours `--model` (default `tiny.en`) and `--device` (`cpu` / `cuda`). On `cpu` it runs `int8` quantisation by default; this is what fits inside CI runners and developer laptops.
+- **`faster-whisper`** — opt-in real backend. Lazy-imported only inside `_run()` so a missing optional dep doesn't break `pipelines.asr` import. Honours `--model` (default `small`, multilingual; `tiny` / `base` / `medium` / `large-v3` also accepted), `--language` (ISO-639-1 hint, auto-detect when omitted), and `--device` (`cpu` / `cuda`). On `cpu` it runs `int8` quantisation by default; this is what fits inside CI runners and developer laptops.
 
 CLI:
 
@@ -91,14 +92,14 @@ python tools/run_pipeline.py asr \
 
 Output: `derived/asr/<stem>.transcript.json` (`{backend, model_id, segments: [{start, end, text}]}`) plus a descriptor.
 
-The default audio resolution rule, when `--input` is not given: walk `manifest.artifacts[]` for the first entry whose `format` is in the audio set; if it has a local `repo://` URI, use that; otherwise look for an adjacent pointer with a local sample. This is *exactly* the same resolution `validate_media.py` uses.
+The default audio resolution rule, when `--input` is not given: walk `manifest.artifacts[]` for the first entry with `kind == "audio"`; if it has a `path`, resolve it relative to the record root and use it. If no manifest match resolves, fall back to a sorted glob of `<record>/artifacts/**/*.{wav,mp3,m4a,flac}` and pick the first hit.
 
 ### 2.2 `text` — normalise + redact (issue #32)
 
 Reads either a transcript JSON (auto-flattens `segments[].text`) or a plain `.txt`. Two transformations:
 
 1. **Normalisation** — Unicode NFKC, strips zero-width / BOM characters, collapses whitespace, normalises smart quotes/dashes to ASCII, and applies the small bidi safeguard against text that mixes RTL/LTR through invisible markers. Determined by `--mode normalize`.
-2. **Redaction** — conservative regex pattern set: emails, CN mobile phone numbers (`1\d{10}`), CN ID-card numbers (18-digit, with checksum cross-check), generic passport patterns, IBAN, IPv4/IPv6 addresses. Replaced in-place with `[REDACTED:<rule_name>]`. Determined by `--mode redact`.
+2. **Redaction** — conservative regex pattern set evaluated in priority order so specific patterns win over generic ones: `url_with_credentials` (`<URL_WITH_CREDENTIALS>`), `email` (`<EMAIL>`), `id_cn` (18-digit CN ID with terminal `\d|X|x`, `<ID_CN>`), `phone_cn` (`1[3-9]\d{9}`, `<PHONE_CN>`), `ipv4` (RFC-shape, `<IPV4>`), `credit_card_like` (13–19 digit runs with optional spaces / dashes, `<CARD>`), `phone_generic` (loose `+?\d[\d \-().]{6,18}\d`, `<PHONE>`). Replaced in-place with the **stable category placeholder** shown in parentheses — not the rule name and not the matched substring. Determined by `--mode redact`.
 
 `--mode both` (default) runs normalise → redact in that order, so redaction patterns can rely on the post-NFKC encoding.
 
@@ -203,7 +204,7 @@ python tools/run_pipeline.py text \
   --output-dir ~/scratch/cleaned/
 ```
 
-When `--record` is absent, the descriptor's `record_id` falls back to `unbound:<basename>` and the offline-first invariant still applies.
+When `--record` is absent, the descriptor's `record_id` falls back to `dlrs_unknown` (which still satisfies the schema's `^dlrs_[a-zA-Z0-9_-]{4,}$` pattern) and the offline-first invariant still applies.
 
 ## 4. Authoring a new pipeline
 
