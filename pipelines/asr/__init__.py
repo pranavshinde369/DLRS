@@ -123,10 +123,16 @@ def _first_audio_in_record(record_root: Path) -> Path:
         try:
             data = json.loads(manifest.read_text(encoding="utf-8"))
             for item in data.get("artifacts", []):
-                if item.get("kind") == "audio":
-                    candidate = record_root / item["path"]
-                    if candidate.exists():
-                        return candidate
+                if item.get("kind") != "audio":
+                    continue
+                rel = item.get("path")
+                if not rel:
+                    # Newer schema versions use ``storage_uri`` for pointer-style
+                    # artefacts; fall through to the filesystem glob below.
+                    continue
+                candidate = record_root / rel
+                if candidate.exists():
+                    return candidate
         except (OSError, json.JSONDecodeError):
             pass
 
@@ -204,7 +210,13 @@ def _run(args: argparse.Namespace) -> int:
     builder.add_input(source_pointer=pointer_rel, file_path=audio)
 
     if record_root is not None:
-        out_path_in_record = str(transcript_path.relative_to(record_root))
+        try:
+            out_path_in_record = str(transcript_path.relative_to(record_root))
+        except ValueError:
+            # --output-dir was set to a path outside the record tree. The
+            # descriptor still needs a derived/<pipeline>/ path to satisfy
+            # the schema, so fall back to a synthetic record-relative form.
+            out_path_in_record = f"derived/asr/{transcript_path.name}"
     else:
         out_path_in_record = f"derived/asr/{transcript_path.name}"
     descriptor = builder.finalise(out_path_in_record, transcript_path)
