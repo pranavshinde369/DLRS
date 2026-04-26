@@ -92,9 +92,11 @@ def _resolve_record_and_input(args: argparse.Namespace) -> tuple[Optional[Path],
     record_root: Optional[Path] = Path(args.record).resolve() if args.record else None
 
     if args.input:
-        audio = Path(args.input).resolve()
-        if record_root is not None and not audio.is_absolute():
+        audio_arg = Path(args.input)
+        if record_root is not None and not audio_arg.is_absolute():
             audio = (record_root / args.input).resolve()
+        else:
+            audio = audio_arg.resolve()
     else:
         if record_root is None:
             raise SystemExit("[asr] one of --input or --record is required")

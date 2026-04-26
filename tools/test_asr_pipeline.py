@@ -50,7 +50,7 @@ def _make_synthetic_record(root: Path) -> Path:
     return record
 
 
-def _run_pipeline(record: Path) -> int:
+def _run_pipeline(record: Path, *, input_arg: str | None = None, cwd: Path | None = None) -> int:
     cmd = [
         sys.executable,
         str(ROOT / "tools" / "run_pipeline.py"),
@@ -62,7 +62,9 @@ def _run_pipeline(record: Path) -> int:
         "--language",
         "zh",
     ]
-    proc = subprocess.run(cmd, capture_output=True, text=True)
+    if input_arg is not None:
+        cmd.extend(["--input", input_arg])
+    proc = subprocess.run(cmd, capture_output=True, text=True, cwd=cwd)
     if proc.returncode != 0:
         sys.stderr.write(proc.stderr)
         return proc.returncode
@@ -86,8 +88,21 @@ def main() -> int:
         tmp_root = Path(tmp)
         record = _make_synthetic_record(tmp_root)
 
+        # Case A: only --record (manifest auto-discovery)
         rc = _run_pipeline(record)
-        _assert(rc == 0, f"run_pipeline.py asr exited with {rc}", errors)
+        _assert(rc == 0, f"run_pipeline.py asr (auto-discovery) exited with {rc}", errors)
+
+        # Case B (regression for the relative --input bug fixed in this PR):
+        # pass --input as a record-relative path while running the CLI from
+        # an unrelated CWD. Before the fix, .resolve() turned the relative
+        # path into $CWD/artifacts/audio/voice_master.wav and the lookup failed.
+        shutil.rmtree(record / "derived", ignore_errors=True)
+        rc = _run_pipeline(
+            record,
+            input_arg="artifacts/audio/voice_master.wav",
+            cwd=tmp_root,
+        )
+        _assert(rc == 0, f"run_pipeline.py asr (record-relative --input) exited with {rc}", errors)
 
         derived_dir = record / "derived" / "asr"
         transcript = derived_dir / "voice_master.transcript.json"
