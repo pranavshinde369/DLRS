@@ -4,20 +4,24 @@
 
 ## 📊 快速概览
 
-**当前版本**: v0.4.0
-**总体完成度**: ~78%
+**当前版本**: v0.5.0
+**总体完成度**: ~83%
 **参考标准**: DLRS_ULTIMATE.md
-**最近发布**: PR #16 (v0.3) + v0.4 release PR
+**最近发布**: v0.5 epic #28（PRs #39–#48）
 
-### v0.3 → v0.4 主要增量
+### v0.4 → v0.5 主要增量
 
-- 仓库防御层：`.gitattributes` 把音视频/3D/模型权重路由到 Git LFS；`docs/LFS_GUIDE.md` 解释何时用 LFS、何时用 pointer。
-- 自动化：`tools/batch_validate.py` 一键产出 `reports/validate_<ts>.json`，CI 把它作为 artifact 上传，未来审核台可直接消费。
-- 审计：`tools/emit_audit_event.py` + `audit/events.jsonl` append-only 约定，含哈希链与重复 event_id 拒写。`schemas/audit-event.schema.json` 收紧到 8 个核心 enum + custom。
-- 合规：`docs/COMPLIANCE_CHECKLIST.md` 把 PIPL / GDPR / EU AI Act / 中国深度合成办法逐条映射到 manifest 字段与 validator。
-- AI 标识：`manifest.public_disclosure` 字段 + `if/then` 硬约束（任何 `public_*` 可见性必须声明）。`label_locales[]`、`watermark_methods[]`、`c2pa_claim_generator` 都已是 schema 一部分；实际水印实施推到 v1.0。
-- 静态注册表：`tools/build_registry.py` 同时产出 `registry/index.html`（零依赖、内联 CSS），可直接托管到 gh-pages，替代之前规划的 Web 审核台原型。
-- 示例：新增 `examples/minor-protected`、`examples/estate-conflict-frozen`，验证未成年人与遗产争议两个反例都被 registry 排除；`tools/test_registry.py` 增加对应 2 个用例（共 14）。
+- **管线契约**：`pipelines/__init__.py` 注册 `PipelineSpec`，`tools/run_pipeline.py` 提供单一 CLI 入口；`tools/validate_pipelines.py` 静态守卫强制 `derived/<spec.name>/` 输出前缀 + 拒绝任何 hosted-API import（机械化执行的离线优先不变量）。
+- **派生资产 schema**：`schemas/derived-asset.schema.json` + `pipelines/_descriptor.py` 让每条 pipeline 输出都附带 provenance descriptor（who/what/where/hashes），`model.online_api_used` 始终为 `false`。
+- **四条离线管线**：
+  - `pipelines/asr/` — `dummy`（确定性）+ `faster-whisper`（懒加载）双后端；多语言 + 时间戳；`--device cpu|cuda`。
+  - `pipelines/text/` — NFKC 正规化 + 保守正则脱敏（邮箱、CN 手机/身份证、IBAN、IPv4/IPv6、护照）；`redactions.json` 旁注永远不回写原文。
+  - `pipelines/vectorization/` — 段落感知切分 + 绝对字符偏移；`hash`（确定性 64-D）+ `sentence-transformers` 双后端；可选本地 Qdrant 推送（`backend` / `model_id` 分键）。
+  - `pipelines/moderation/` — 确定性 regex/wordlist 策略 + 严重度聚合（`pass | flag | block`）；`--policy-file` JSON/YAML 自定义；flag 永远不回写匹配文本。
+- **CI 集成**：`.github/workflows/validate.yml` 新增 `pipelines` 矩阵 job（Python 3.11 / 3.12）；`tools/test_pipelines.py` 子进程驱动 + `tools/batch_validate.py` 11 个 step 全绿。
+- **端到端示例**：`examples/asr-demo/` 自包含、确定性 placeholder WAV、`bash run_demo.sh` 一键产出 9 个派生工件 + 4 份 descriptor，全程不需要联网。
+- **文档**：`docs/PIPELINE_GUIDE.md` 落地 contract / descriptor / 各管线 CLI / 作者向导 / v0.5 不在范围的事；GAP/STATUS/ROADMAP/CHANGELOG 全面刷新到 v0.5。
+- **治理硬规则**（v0.5 起永久生效）：每个子 issue 一个 PR，PR body 必须以 `Closes #N` 单独成行显式列出，避免 v0.3/v0.4 的逗号串列被 GitHub 忽略导致 stale issue 大批留存。
 
 ---
 
