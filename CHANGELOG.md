@@ -42,8 +42,11 @@ untouched until a pipeline is explicitly run against them.
   pipeline cannot mask test results in another.
 - `tools/test_asr_demo.py` — end-to-end test for `examples/asr-demo`.
 - `schemas/derived-asset.schema.json` — provenance descriptor schema
-  (derived_asset_id / pipeline / inputs[] / output / model / record_id /
-  optional `moderation_outcome`).
+  (`schema_version` / `derived_id` / `record_id` / top-level `pipeline` +
+  `pipeline_version` / `actor_role` / `inputs.{source_pointers,inputs_hash}`
+  / `output.{path,outputs_hash}` / optional `model.{id,version?,source?,
+  online_api_used: false}` (required when pipeline is `asr` or
+  `vectorization`) / optional `moderation_outcome`).
 - `examples/asr-demo/` — self-contained fixture record. `run_demo.sh`
   regenerates a deterministic placeholder WAV (DLRS is pointer-first so
   audio is never committed) and walks all four pipelines end-to-end with

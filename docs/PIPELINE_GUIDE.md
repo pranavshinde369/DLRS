@@ -50,14 +50,23 @@ The contract is enforced at static-validation time, not runtime, so a regression
 
 `pipelines/_descriptor.py` builds a JSON document for each output that records *who/what/where/with-what-hashes* — the full provenance. The schema (`schemas/derived-asset.schema.json`) requires:
 
-- `derived_asset_id` — UUIDv4. Stable for an output across re-runs only if the upstream sha256 also matches.
-- `created_at` — ISO 8601 UTC.
-- `pipeline.name` / `pipeline.version`.
-- `inputs[]` — list of `{role, sha256, path?, pointer?}` covering everything the pipeline read.
-- `output.path` / `output.sha256` — what was written and its hash.
-- `model` — optional `{backend, model_id, online_api_used: false}`.
+- `schema_version` — pinned to `dlrs-derived-asset/1.0`.
+- `derived_id` — ULID or UUIDv4. Once written it MUST NOT change; re-running the pipeline produces a *new* `derived_id` even if the inputs are byte-identical, so historical descriptors stay attributable.
 - `record_id` — copied from `manifest.json`, so a descriptor is meaningful even if it leaks out of its record.
-- `moderation_outcome` — only set by the moderation pipeline; one of `pass | flag | block`.
+- `pipeline` — top-level string, one of `asr | text | vectorization | moderation | custom`. Must equal a registered `PipelineSpec.name`.
+- `pipeline_version` — implementation version (SemVer or short commit SHA, e.g. `0.5.0` or `git:108b50c`). Combined with `inputs.inputs_hash` to decide whether a re-run is necessary.
+- `created_at` — ISO 8601 UTC; the time of write, not the time the run started.
+- `actor_role` — who triggered the run; mirrors the audit-event `actor_role` enum so `emit_audit_event.py` can quote it directly.
+- `inputs.source_pointers[]` — relative paths (from the record root) to every pointer.json or raw artefact consumed. Pointer files are preferred so the hash check survives a storage migration.
+- `inputs.inputs_hash` — `sha256:<hex>` of the canonical concatenation of input file content hashes. Pipelines MUST refuse to re-emit an identical descriptor if `inputs_hash` and `pipeline_version` both match.
+- `inputs.preprocessing` — optional free-form record of pre-pipeline transforms (resampling, NFKC, …).
+- `output.path` — relative path from the record root, MUST start with `derived/<pipeline>/`.
+- `output.outputs_hash` — `sha256:<hex>` of the produced file's bytes (or, for multi-file outputs like a Qdrant collection, of the canonical manifest of those files).
+- `output.byte_size` — optional convenience field.
+- `model` — optional `{id, version?, source?, online_api_used: false}`. **Required** for `pipeline ∈ {asr, vectorization}`. `online_api_used` is `const: false` in v0.5 — the offline-first invariant enforced as schema.
+- `parameters` — pipeline-specific kwargs serialised verbatim (chunk size, language hint, embedding dim, lexicon path, …). Anything that influences the output MUST be recorded here so re-runs are reproducible.
+- `audit_event_ref` — optional pointer (`audit/events.jsonl#L12`) into the build event log.
+- `moderation_outcome` — only set by the moderation pipeline (or other pipelines whose output drives policy); one of `pass | flag | block`.
 
 A descriptor is the smallest object you can hand to a downstream consumer (auditor, registry builder, RAG indexer) to convince them an artefact came from a real record + real input. The schema is intentionally minimal so growing it later is additive.
 
