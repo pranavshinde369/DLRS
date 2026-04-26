@@ -179,6 +179,42 @@
       "fr-FR": "Transfrontalier",
       "de-DE": "Grenzüberschreitend",
       "es-ES": "Transfronterizo"
+    },
+    "mainland_china": {
+      "en-US": "Mainland China",
+      "zh-CN": "中国大陆",
+      "ja-JP": "中国本土",
+      "ko-KR": "중국 본토",
+      "fr-FR": "Chine Continentale",
+      "de-DE": "Festlandchina",
+      "es-ES": "China Continental"
+    },
+    "domestic": {
+      "en-US": "Domestic",
+      "zh-CN": "国内",
+      "ja-JP": "国内",
+      "ko-KR": "국내",
+      "fr-FR": "National",
+      "de-DE": "Inländisch",
+      "es-ES": "Nacional"
+    },
+    "international": {
+      "en-US": "International",
+      "zh-CN": "国际",
+      "ja-JP": "国際",
+      "ko-KR": "국제",
+      "fr-FR": "International",
+      "de-DE": "International",
+      "es-ES": "Internacional"
+    },
+    "self_hosted": {
+      "en-US": "Self-hosted",
+      "zh-CN": "私有部署",
+      "ja-JP": "セルフホスト",
+      "ko-KR": "자체 호스팅",
+      "fr-FR": "Auto-hébergé",
+      "de-DE": "Selbst Gehostet",
+      "es-ES": "Auto-alojado"
     }
   },
   "visibility_levels": {
