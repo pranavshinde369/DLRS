@@ -116,7 +116,7 @@ I'm looking for feedback on:
 - Schema design (are the fields appropriate?)
 - Ethical boundaries (what should be forbidden?)
 
-**Current status:** v0.2 Draft (very early stage)
+**Current status:** v0.4 Draft (very early stage)
 
 GitHub: https://github.com/Digital-Life-Repository-Standard/DLRS
 
@@ -197,7 +197,7 @@ DLRS 是一个面向数字生命档案的开放标准草案，重点解决：
 
 ## 当前状态
 
-版本：v0.2 Draft（早期阶段）
+版本：v0.4 Draft（早期阶段）
 许可：MIT
 语言：中英文双语
 
@@ -257,7 +257,7 @@ https://github.com/Digital-Life-Repository-Standard/DLRS
 4/ Why I'm sharing:
 Looking for feedback on privacy model, consent framework, schema design, and ethical boundaries.
 
-5/ Current status: v0.2 Draft (very early stage)
+5/ Current status: v0.4 Draft (very early stage)
 
 GitHub: https://github.com/Digital-Life-Repository-Standard/DLRS
 
