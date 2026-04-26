@@ -116,7 +116,7 @@ I'm looking for feedback on:
 - Schema design (are the fields appropriate?)
 - Ethical boundaries (what should be forbidden?)
 
-**Current status:** v0.2 Draft (very early stage)
+**Current status:** v0.4 Draft (very early stage)
 
 GitHub: https://github.com/Digital-Life-Repository-Standard/DLRS
 
@@ -154,7 +154,7 @@ I'd appreciate any thoughts, especially on privacy and ethics. What am I missing
 - Schema 设计（字段是否合适？）
 - 伦理边界（哪些行为应被禁止？）
 
-**当前状态：** v0.2 草案（非常早期）
+**当前状态：** v0.4 草案（非常早期）
 
 GitHub: https://github.com/Digital-Life-Repository-Standard/DLRS
 
@@ -165,7 +165,7 @@ GitHub: https://github.com/Digital-Life-Repository-Standard/DLRS
 
 ### Template 3: 掘金 / 开源中国
 
-**标题**："DLRS v0.2：数字生命档案开放标准草案（RFC）"
+**标题**："DLRS v0.4：数字生命档案开放标准草案（RFC）"
 
 **正文**：
 ```
@@ -197,7 +197,7 @@ DLRS 是一个面向数字生命档案的开放标准草案，重点解决：
 
 ## 当前状态
 
-版本：v0.2 Draft（早期阶段）
+版本：v0.4 Draft（早期阶段）
 许可：MIT
 语言：中英文双语
 
@@ -224,7 +224,7 @@ DLRS 是一个面向数字生命档案的开放标准草案，重点解决：
 
 **Short Version**:
 ```
-🚀 DLRS v0.2: Open standard draft for privacy-first digital life archives
+🚀 DLRS v0.4: Open standard draft for privacy-first digital life archives
 
 ✅ Consent-based
 ✅ Revocable
@@ -240,7 +240,7 @@ https://github.com/Digital-Life-Repository-Standard/DLRS
 
 **Thread Version**:
 ```
-1/ Introducing DLRS v0.2: An open standard draft for privacy-first, consent-based digital life archives.
+1/ Introducing DLRS v0.4: An open standard draft for privacy-first, consent-based digital life archives.
 
 2/ What it is:
 - JSON schemas for digital life records
@@ -257,7 +257,7 @@ https://github.com/Digital-Life-Repository-Standard/DLRS
 4/ Why I'm sharing:
 Looking for feedback on privacy model, consent framework, schema design, and ethical boundaries.
 
-5/ Current status: v0.2 Draft (very early stage)
+5/ Current status: v0.4 Draft (very early stage)
 
 GitHub: https://github.com/Digital-Life-Repository-Standard/DLRS
 
