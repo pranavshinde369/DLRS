@@ -166,7 +166,8 @@ def _push_to_qdrant(
     collection: str,
     record_id: str,
     pointer_rel: str,
-    backend_id: str,
+    backend: str,
+    model_id: str,
     result,
 ) -> dict:
     """Push the vectors to a local Qdrant. Lazy-imported."""
@@ -190,7 +191,8 @@ def _push_to_qdrant(
                     "char_start": chunk.char_start,
                     "char_end": chunk.char_end,
                     "text_sha256": chunk.text_sha256(),
-                    "backend": backend_id,
+                    "backend": backend,
+                    "model_id": model_id,
                 },
             )
         )
@@ -254,7 +256,8 @@ def _run(args: argparse.Namespace) -> int:
             collection=collection,
             record_id=record_id,
             pointer_rel=pointer_rel,
-            backend_id=result.model_id,
+            backend=result.backend,
+            model_id=result.model_id,
             result=result,
         )
 
