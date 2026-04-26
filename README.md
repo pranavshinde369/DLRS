@@ -1,149 +1,134 @@
-# DLRS Hub：全球数字生命母仓库 - 完整使用指南
+# Digital Life Repository Standard (DLRS) v0.2 Draft
 
 <div align="center">
 
-**Digital Life Repository Standard Hub**
+**DLRS 是一个面向数字生命档案的开放标准草案**  
+**重点解决隐私优先、自愿授权、结构化存档、可撤回、可审计、Schema 校验和模板化提交等问题**
 
-一个用于建立"全球数字生命计划"的标准化母仓库
-
-> **📢 This project is currently in RFC stage. Feedback, translations, schema improvements, and ethical review are welcome.**  
-> **本项目目前处于 RFC（征求意见）阶段，欢迎反馈、翻译、Schema 改进和伦理审查。**
+> **📢 RFC Stage | 征求意见阶段**  
+> This is an early-stage open standard draft. Feedback, translations, schema improvements, and ethical review are welcome.  
+> 这是早期开放标准草案。欢迎反馈、翻译、Schema 改进和伦理审查。
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0-green.svg)](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v0.2%20Draft-orange.svg)](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/CHANGELOG.md)
 [![i18n](https://img.shields.io/badge/i18n-2%20languages-blue.svg)](https://github.com/Digital-Life-Repository-Standard/DLRS/tree/master/docs/i18n)
+[![RFC](https://img.shields.io/badge/RFC-Open%20for%20Comment-green.svg)](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/docs/community/RFC-DLRS-v0.2.md)
 
-**语言 / Languages:** [English](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/README.en.md) | 简体中文 | [日本語](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/README.ja.md) 🚧 | [한국어](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/README.ko.md) 📝
+**语言 / Languages:** [English](https://github.com/Digital-Life-Repository-Standard/DLRS/blob/master/README.en.md) | 简体中文
 
 </div>
 
 ---
 
-## 📖 目录
+## 🎯 什么是 DLRS？
 
-- [什么是 DLRS Hub？](#什么是-dlrs-hub)
-- [核心概念](#核心概念)
-- [快速开始](#快速开始)
-- [详细教程](#详细教程)
-  - [1. 环境准备](#1-环境准备)
-  - [2. 创建你的第一个数字生命档案](#2-创建你的第一个数字生命档案)
-  - [3. 填写档案信息](#3-填写档案信息)
-  - [4. 校验和提交](#4-校验和提交)
-- [目录结构详解](#目录结构详解)
-- [常见问题](#常见问题)
-- [进阶使用](#进阶使用)
-- [贡献指南](#贡献指南)
-- [法律声明](#法律声明)
+**DLRS (Digital Life Repository Standard)** 是一个**开放标准草案**，用于隐私优先、基于授权的数字生命档案。
+
+它定义了：
+- 📋 档案目录结构和 JSON Schema
+- ✅ 授权和撤回模型
+- 🔒 隐私边界和敏感度分级
+- 🏛️ 治理规则和审核流程
+- 🛠️ 验证工具和档案模板
+- ⚖️ 法律免责声明和伦理指南
 
 ---
 
-## 什么是 DLRS Hub？
+## ❌ DLRS 不是什么
 
-DLRS Hub（Digital Life Repository Standard Hub）是一个**数字生命档案标准化管理系统**，旨在建立一个：
+**重要声明**：
 
-- ✅ **可审计**：所有操作都有完整的审计日志
-- ✅ **可撤回**：参与者可以随时撤回授权并删除数据
-- ✅ **可验证**：通过哈希和签名验证数据完整性
-- ✅ **可扩展**：支持多种数据类型和使用场景
-- ✅ **隐私优先**：敏感数据不直接存储在 Git 仓库中
-
-### 这个仓库解决什么问题？
-
-DLRS Hub 的目标**不是**把每个人的原始音视频直接塞进 GitHub，而是建立一个安全、合规、可控的数字生命档案体系。
-
-### 五大核心原则
-
-1. **原始敏感素材不直接入 Git**  
-   音频、视频、证件、人脸、声纹等高敏感材料存储在区域化对象存储中，本仓库只保存 `.pointer.json` 指针文件、哈希值和审核状态。
-
-2. **自愿参与优先**  
-   公开索引只接收本人授权、自愿参与、可撤回的档案。
-
-3. **公开不等于无限使用**  
-   每个档案必须明确声明是否允许：公开展示、模型微调、语音克隆、虚拟形象克隆、商业化、跨境处理。
-
-4. **先冻结，后复核，再删除**  
-   遇到投诉、冒充、撤回同意、继承争议时，先冻结运行态并保留必要审计证据。
-
-5. **AI 合成必须标识**  
-   任何公开输出都必须显式标记为 AI 生成/编辑内容，音视频建议加入水印或 C2PA 内容凭证。
+- ❌ **不是**"复活人类"或"克隆人格"的技术
+- ❌ **不是**保证 AI 分身等同真人的承诺
+- ❌ **不是**法律合规的保证
+- ❌ **不是**永久存储解决方案
+- ❌ **不是**成熟的生产系统
+- ❌ **不是**法律建议的替代品
 
 ---
 
-## 核心概念
+## ✅ DLRS 是什么
 
-### 三类核心对象
+- ✅ **开放标准草案**：用于讨论和改进
+- ✅ **隐私优先**：敏感数据不直接存储在 Git
+- ✅ **基于授权**：所有档案必须有明确授权证据
+- ✅ **可撤回**：用户可以随时撤回授权
+- ✅ **可审计**：所有操作都有审计日志
+- ✅ **实验性**：非约束性参考实现
+- ✅ **社区驱动**：欢迎贡献和反馈
 
-| 对象 | 所在目录 | 作用 |
-|------|---------|------|
-| **标准** | `standards/dlrs/` | 定义 DLRS 的最低合格规范、目录规范、权限模型、审计模型 |
-| **模板** | `templates/` | 供新参与者复制填写，生成自己的数字生命档案 |
-| **人类档案** | `humans/{region}/{country}/{record_id_slug}/` | 自愿参与者的档案清单、授权状态、公开资料和指针 |
+---
 
-### 档案可见性级别
+## 🚀 为什么需要 DLRS？
 
-- `private`：完全私有，不出现在任何公开索引中
-- `public_unlisted`：可通过直接链接访问，但不出现在公开索引中
-- `public_indexed`：出现在公开索引中，可被搜索和发现
+随着 AI 技术的发展，数字生命档案（digital life archives）变得越来越重要。但目前缺少：
+
+1. **标准化的档案结构** - 每个项目都在重新发明轮子
+2. **明确的授权模型** - 如何证明用户同意？如何撤回？
+3. **隐私保护框架** - 哪些数据不应直接存储？如何安全引用？
+4. **治理和审核规则** - 如何处理争议？如何验证真实性？
+5. **伦理边界定义** - 即使有授权，哪些行为也应被禁止？
+
+DLRS 试图通过开放标准的方式解决这些问题。
+
+---
+
+## 📖 核心概念
+
+### 三层架构
+
+```
+Git 仓库（公开/私有）
+├── manifest.json          # 元数据和配置
+├── consent/               # 授权证据（可使用指针）
+├── artifacts/raw_pointers/ # 指针文件（不存储原始数据）
+└── audit/                 # 审计日志
+
+外部存储（加密、访问控制）
+├── s3://bucket/voice/master.wav
+├── s3://bucket/video/training.mp4
+└── s3://bucket/images/headshot.jpg
+```
 
 ### 敏感度分级
 
-- `S0_PUBLIC`：公开信息（如公开简介）
-- `S1_INTERNAL`：内部信息（如偏好设置）
-- `S2_CONFIDENTIAL`：机密信息（如聊天记录）
-- `S3_BIOMETRIC`：生物识别信息（如人脸、声纹）
-- `S4_IDENTITY`：身份证明文件（如护照、身份证）
+- `S0_PUBLIC` - 公开信息（如公开简介）
+- `S1_INTERNAL` - 内部信息（如偏好设置）
+- `S2_CONFIDENTIAL` - 机密信息（如聊天记录）
+- `S3_BIOMETRIC` - 生物识别信息（如人脸、声纹）
+- `S4_IDENTITY` - 身份证明文件（如护照、身份证）
+
+### 可见性级别
+
+- `private` - 完全私有
+- `public_unlisted` - 可通过直接链接访问
+- `public_indexed` - 可被搜索和发现
 
 ---
 
-## 快速开始
+## 🏁 快速开始
 
-### 前置要求
-
-- Git
-- Python 3.8+
-- 文本编辑器（推荐 VS Code）
-
-### 三步快速体验
+### 1. 克隆仓库
 
 ```bash
-# 1. 克隆仓库
-git clone https://github.com/your-org/dlrs-hub.git
-cd dlrs-hub
+git clone https://github.com/Digital-Life-Repository-Standard/DLRS.git
+cd DLRS
+```
 
-# 2. 安装依赖
+### 2. 安装依赖
+
+```bash
 pip install -r tools/requirements.txt
+```
 
-# 3. 查看示例档案
-cd humans/asia/cn/dlrs_94f1c9b8_lin-example
+### 3. 查看示例档案
+
+```bash
+cd examples/minimal-private
 cat manifest.json
 ```
 
----
-
-## 详细教程
-
-### 1. 环境准备
-
-#### 1.1 安装 Python 依赖
-
-```bash
-cd dlrs-hub
-pip install -r tools/requirements.txt
-```
-
-#### 1.2 验证工具可用
-
-```bash
-python tools/validate_repo.py --help
-python tools/new_human_record.py --help
-```
-
----
-
-### 2. 创建你的第一个数字生命档案
-
-#### 2.1 使用自动化工具创建档案
+### 4. 创建你的第一个档案
 
 ```bash
 python tools/new_human_record.py \
@@ -153,471 +138,87 @@ python tools/new_human_record.py \
   --country cn
 ```
 
-这将在 `humans/asia/cn/dlrs_12345678_zhang-san/` 创建一个新档案目录。
-
-#### 2.2 手动创建档案（可选）
-
-如果你想手动创建，可以复制模板：
+### 5. 验证档案
 
 ```bash
-# 复制模板到新位置
-cp -r templates/archive-types/self-owned/ humans/asia/cn/dlrs_12345678_zhang-san/
-
-# 进入新档案目录
-cd humans/asia/cn/dlrs_12345678_zhang-san/
-```
-
----
-
-### 3. 填写档案信息
-
-#### 3.1 编辑 `manifest.json`（核心配置文件）
-
-这是最重要的文件，包含档案的所有元数据。
-
-```json
-{
-  "schema_version": "0.2.0",
-  "record_id": "dlrs_12345678",
-  "display_slug": "zhang-san",
-  "visibility": "private",  // 可选：private, public_unlisted, public_indexed
-  
-  "subject": {
-    "type": "self",  // self（本人）或 third_party（第三方上传）
-    "display_name": "张三",
-    "legal_name": null,  // 可选：真实法律姓名
-    "locale": "zh-CN",
-    "residency_region": "CN",
-    "is_minor": false,  // 是否未成年人
-    "status": "living"  // living（在世）或 deceased（已故）
-  },
-  
-  "rights": {
-    "uploader_role": "self",
-    "rights_basis": ["consent"],  // 权利基础：consent, contract, legitimate_interest
-    "evidence_refs": [
-      "consent/consent_statement.md",
-      "consent/consent_video.pointer.json"
-    ],
-    "allow_public_listing": false,  // 是否允许公开索引
-    "allow_commercial_use": false,  // 是否允许商业使用
-    "allow_model_finetune": false,  // 是否允许模型微调
-    "allow_voice_clone": false,     // 是否允许语音克隆
-    "allow_avatar_clone": false,    // 是否允许虚拟形象克隆
-    "allow_research_use": false,    // 是否允许研究使用
-    "cross_border_transfer_basis": "none",
-    "cross_border_transfer_status": "not_needed"
-  },
-  
-  "consent": {
-    "captured_at": "2026-04-25T10:30:00+08:00",
-    "withdrawal_endpoint": "mailto:your-email@example.com",  // 撤回联系方式
-    "separate_biometric_consent": true,
-    "guardian_consent": false,
-    "consent_version": "0.2.0",
-    "allowed_scopes": [
-      "storage",
-      "structured_processing"
-    ]
-  },
-  
-  "artifacts": [],  // 稍后填写
-  
-  "deletion_policy": {
-    "allow_delete": true,
-    "allow_export": true,
-    "withdrawal_effect": "freeze_runtime_then_delete",
-    "legal_hold": false
-  },
-  
-  "security": {
-    "primary_region": "CN",
-    "replication_regions": [],
-    "encryption_at_rest": true,
-    "kms_ref": null,
-    "watermark_policy": "visible_and_invisible",
-    "c2pa_enabled": false
-  },
-  
-  "review": {
-    "status": "pending",  // pending, approved_public, rejected
-    "verified_consent_badge": false,
-    "public_data_only_badge": false,
-    "risk_level": "low",
-    "reviewer_notes_ref": null
-  },
-  
-  "audit": {
-    "created_at": "2026-04-25T10:45:00+08:00",
-    "last_modified_at": "2026-04-25T10:45:00+08:00",
-    "change_log_hash": null
-  }
-}
-```
-
-#### 3.2 编辑 `public_profile.json`（公开简介）
-
-如果你计划公开档案，需要填写这个文件：
-
-```json
-{
-  "display_name": "张三",
-  "bio": "一个热爱技术的开发者",
-  "avatar_url": null,
-  "social_links": {
-    "github": "https://github.com/zhangsan",
-    "twitter": null,
-    "website": "https://zhangsan.example.com"
-  },
-  "tags": ["developer", "ai", "open-source"],
-  "locale": "zh-CN"
-}
-```
-
-#### 3.3 填写同意声明 `consent/consent_statement.md`
-
-```markdown
-# 数字生命档案同意声明
-
-我，张三，确认：
-
-1. 我自愿参与 DLRS 数字生命计划
-2. 我理解我的数据将如何被使用
-3. 我保留随时撤回授权的权利
-
-签署日期：2026-04-25
-签署人：张三
-```
-
-#### 3.4 添加数据指针（不上传原始文件！）
-
-在 `artifacts/raw_pointers/` 目录下创建指针文件，例如 `audio/voice_master.pointer.json`：
-
-```json
-{
-  "artifact_id": "voice_001",
-  "type": "voice_sample",
-  "format": "wav",
-  "storage_uri": "s3://my-bucket/audio/voice_master.wav",
-  "checksum": "sha256:abc123...",
-  "size_bytes": 1048576,
-  "region": "CN",
-  "sensitivity": "S3_BIOMETRIC",
-  "contains_sensitive_data": true,
-  "created_at": "2026-04-25T10:00:00+08:00"
-}
-```
-
-同时在 `manifest.json` 的 `artifacts` 数组中添加引用：
-
-```json
-"artifacts": [
-  {
-    "artifact_id": "voice_001",
-    "type": "voice_sample",
-    "format": "wav",
-    "storage_uri": "s3://my-bucket/audio/voice_master.wav",
-    "checksum": "sha256:abc123...",
-    "region": "CN",
-    "sensitivity": "S3_BIOMETRIC",
-    "contains_sensitive_data": true
-  }
-]
-```
-
----
-
-### 4. 校验和提交
-
-#### 4.1 本地校验
-
-```bash
-# 回到仓库根目录
-cd /path/to/dlrs-hub
-
-# 运行校验工具
 python tools/validate_repo.py
-
-# 如果通过，会显示：
-# ✓ All validations passed
-```
-
-#### 4.2 生成索引（如果是公开档案）
-
-```bash
-python tools/build_registry.py
-```
-
-这会更新 `registry/humans.index.jsonl` 文件。
-
-#### 4.3 提交到 Git
-
-```bash
-git add humans/asia/cn/dlrs_12345678_zhang-san/
-git commit -m "Add: 张三的数字生命档案"
-git push
-```
-
-#### 4.4 创建 Pull Request
-
-如果你是向公共仓库贡献，需要创建 PR：
-
-1. 在 GitHub 上点击 "New Pull Request"
-2. 选择模板：`.github/PULL_REQUEST_TEMPLATE/human-record.md`
-3. 填写 PR 描述
-4. 等待审核
-
----
-
-## 目录结构详解
-
-```text
-dlrs-hub/
-│
-├── standards/              # 📜 DLRS 标准文档
-│   └── dlrs/
-│       ├── v0.2/          # 版本化标准
-│       └── README.md
-│
-├── schemas/               # 🔍 JSON Schema 验证规则
-│   ├── manifest.schema.json
-│   ├── public_profile.schema.json
-│   └── pointer.schema.json
-│
-├── registry/              # 📇 公开索引
-│   ├── humans.index.jsonl      # 所有公开档案的索引
-│   ├── badges.index.json       # 徽章系统
-│   └── regions/               # 按地区分类的索引
-│
-├── humans/                # 👤 人类档案目录
-│   ├── asia/
-│   │   └── cn/
-│   │       └── dlrs_12345678_zhang-san/
-│   │           ├── manifest.json           # 核心配置
-│   │           ├── public_profile.json     # 公开简介
-│   │           ├── README.md              # 档案说明
-│   │           ├── consent/               # 同意证据
-│   │           │   ├── consent_statement.md
-│   │           │   └── consent_video.pointer.json
-│   │           ├── profile/               # 个人资料
-│   │           │   ├── subject_profile.json
-│   │           │   ├── values_and_preferences.json
-│   │           │   ├── relationship_policy.json
-│   │           │   └── inheritance_policy.json
-│   │           ├── artifacts/             # 数据指针
-│   │           │   ├── raw_pointers/
-│   │           │   │   ├── audio/
-│   │           │   │   ├── video/
-│   │           │   │   ├── image/
-│   │           │   │   ├── text/
-│   │           │   │   └── avatar/
-│   │           │   └── samples/          # 小样本（可选）
-│   │           ├── derived/              # 派生数据
-│   │           │   ├── embeddings.pointer.json
-│   │           │   ├── memory_atoms.jsonl
-│   │           │   ├── entity_graph.jsonl
-│   │           │   └── moderation_report.json
-│   │           ├── runtime/              # 运行时配置
-│   │           │   ├── build_spec.json
-│   │           │   ├── adapters.pointer.json
-│   │           │   ├── session_policies.json
-│   │           │   └── prompts/
-│   │           │       └── system.md
-│   │           └── audit/                # 审计日志
-│   │               ├── provenance.json
-│   │               ├── access_log.pointer.json
-│   │               └── takedown_log.jsonl
-│   ├── europe/
-│   ├── americas/
-│   └── _TEMPLATE/         # 档案模板
-│
-├── templates/             # 📋 各类模板
-│   ├── archive-types/
-│   │   ├── self-owned/    # 本人上传模板
-│   │   ├── memorial/      # 纪念档案模板
-│   │   └── research/      # 研究用途模板
-│   ├── consent/           # 同意书模板
-│   └── pr-packages/       # PR 提交包模板
-│
-├── examples/              # 💡 示例档案（虚构数据）
-│   ├── minimal-private/
-│   ├── public-indexed-demo/
-│   └── memorial-estate-demo/
-│
-├── tools/                 # 🛠️ 自动化工具
-│   ├── validate_repo.py          # 校验工具
-│   ├── build_registry.py         # 索引生成工具
-│   ├── new_human_record.py       # 新建档案工具
-│   ├── check_sensitive_files.py  # 敏感文件检查
-│   └── requirements.txt
-│
-├── policies/              # 📋 政策文档
-│   ├── privacy_policy.md
-│   ├── takedown_policy.md
-│   ├── minor_protection.md
-│   ├── deceased_policy.md
-│   └── cross_border.md
-│
-├── operations/            # 🔧 运营手册
-│   ├── review_manual.md
-│   ├── incident_response.md
-│   ├── badge_issuance.md
-│   └── sla.md
-│
-├── api/                   # 🌐 API 规范
-│   ├── openapi.yaml
-│   └── websocket-events.md
-│
-├── docs/                  # 📚 文档
-│   ├── getting-started.md
-│   ├── architecture.md
-│   ├── FAQ.md
-│   ├── upload-guide.md
-│   └── references.md
-│
-└── .github/               # ⚙️ GitHub 配置
-    ├── ISSUE_TEMPLATE/
-    ├── PULL_REQUEST_TEMPLATE/
-    └── workflows/
 ```
 
 ---
 
-## 常见问题
+## 📚 文档
 
-### Q1: 为什么不直接把视频放进 GitHub？
-
-**A:** 因为原始音视频、人脸、声纹和证件属于高敏感数据。GitHub 不适合存储大型二进制文件，且一旦提交就难以完全删除。母仓库应该保存指针和审计信息，而不是直接托管原件。
-
-### Q2: 人类档案是否必须公开？
-
-**A:** 不是。默认是私有的（`visibility: private`）。公开索引需要额外授权和审核。
-
-### Q3: 数字生命是否等于本人？
-
-**A:** 不是。所有输出都只是 AI 生成或辅助生成内容，不代表真人的即时真实意思表示。必须明确标识为 AI 生成内容。
-
-### Q4: 如何撤回我的档案？
-
-**A:** 联系 `manifest.json` 中 `consent.withdrawal_endpoint` 指定的邮箱或端点。系统会先冻结运行态，然后删除数据。
-
-### Q5: 未成年人可以创建档案吗？
-
-**A:** 可以，但必须有监护人同意（`consent.guardian_consent: true`），且不能公开索引。
-
-### Q6: 已故者的档案如何处理？
-
-**A:** 必须有 `profile/inheritance_policy.json` 指定继承人和处理方式。默认行为是冻结档案。
-
-### Q7: 我可以商业化使用别人的档案吗？
-
-**A:** 必须检查该档案的 `rights.allow_commercial_use` 字段。未经授权的商业使用是违法的。
-
-### Q8: 如何验证档案的真实性？
-
-**A:** 检查 `review.verified_consent_badge` 徽章，以及 `audit/provenance.json` 中的来源证明。
+- 📖 [完整使用指南](docs/getting-started.md)
+- 🤔 [常见问题](docs/FAQ.md)
+- 🏗️ [架构设计](docs/architecture.md)
+- 📋 [RFC: DLRS v0.2](docs/community/RFC-DLRS-v0.2.md)
+- 💬 [授权模型反馈](docs/community/consent-model-feedback.md)
+- 🎯 [Good First Issues](docs/community/good-first-issues.md)
+- 📢 [社区推广指南](docs/community/community-promotion-guide.md)
 
 ---
 
-## 进阶使用
-
-### 公开索引准入条件
-
-一个档案要进入 `registry/humans.index.jsonl`，必须满足：
-
-- ✅ `review.status = approved_public`
-- ✅ `visibility = public_indexed` 或 `public_unlisted`
-- ✅ `review.verified_consent_badge = true` 或 `review.public_data_only_badge = true`
-- ✅ `rights.allow_public_listing = true`
-- ✅ `consent.withdrawal_endpoint` 非空
-- ✅ 未成年人档案不得公开索引
-- ✅ 逝者档案必须有 `profile/inheritance_policy.json`
-
-### 徽章系统
-
-DLRS Hub 提供以下徽章：
-
-- 🔵 **verified-consent**：已验证同意
-- 🟢 **public-data-only**：仅公开数据
-- 🟡 **research-approved**：研究用途批准
-- 🔴 **commercial-licensed**：商业授权
-
-### 审核流程
-
-1. 提交 PR
-2. 自动校验（CI）
-3. 人工审核
-4. 签发徽章
-5. 合并到主分支
-6. 更新公开索引
-
-### 对象存储配置
-
-推荐使用：
-
-- 中国大陆：[阿里云 OSS](https://www.aliyun.com/product/oss)、[腾讯云 COS](https://cloud.tencent.com/product/cos)
-- 国际：[AWS S3](https://aws.amazon.com/s3/)、[Google Cloud Storage](https://cloud.google.com/storage)
-- 私有部署：[MinIO](https://min.io/)
-
-配置示例：
-
-```json
-{
-  "storage_uri": "s3://my-bucket/path/to/file.wav",
-  "region": "cn-shanghai",
-  "encryption": "AES256",
-  "access_control": "private"
-}
-```
-
----
-
-## 贡献指南
+## 🤝 如何贡献
 
 我们欢迎以下类型的贡献：
 
-### 1. 标准改进
+1. **反馈和建议** - 提交 Issue 或参与 Discussions
+2. **文档改进** - 修正错误、添加示例、翻译文档
+3. **Schema 改进** - 优化 JSON Schema 设计
+4. **工具开发** - 改进验证工具、添加新功能
+5. **示例档案** - 提供更多模板和示例
+6. **伦理审查** - 指出潜在的伦理和法律风险
 
-使用 Issue 模板：`spec_proposal`
-
-### 2. 新增人类档案
-
-使用 PR 模板：`human-record`
-
-### 3. 工具和 Schema 修复
-
-普通 Pull Request
-
-### 4. 投诉和下架请求
-
-使用 Issue 模板：`takedown`，或发送到安全邮箱
-
-### 本地开发
-
-```bash
-# 克隆仓库
-git clone https://github.com/your-org/dlrs-hub.git
-cd dlrs-hub
-
-# 安装依赖
-pip install -r tools/requirements.txt
-
-# 运行测试
-python tools/validate_repo.py
-python tools/check_sensitive_files.py
-
-# 生成索引
-python tools/build_registry.py
-```
+详见 [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
-## 法律声明
+## 🌍 国际化
 
-⚠️ **重要提醒**
+当前支持语言：
+- 🇨🇳 简体中文
+- 🇺🇸 English
+
+欢迎贡献更多语言翻译！见 [i18n 指南](docs/i18n/)
+
+---
+
+## 📊 当前状态
+
+**版本**: v0.2 Draft  
+**状态**: RFC（征求意见）阶段  
+**完成度**: 约 60-65%
+
+### ✅ 已完成
+- 基础目录结构
+- JSON Schema 定义
+- 授权和撤回模型
+- 隐私边界定义
+- 验证工具
+- 示例档案
+- 中英文文档
+
+### 🚧 进行中
+- 社区反馈收集
+- Schema 优化
+- 文档完善
+- 多语言翻译
+
+### 📋 计划中
+- 媒体采集规范
+- 构建管线
+- 运行时系统
+- 权限和审计实现
+
+详见 [ROADMAP.md](ROADMAP.md) 和 [实施状态](docs/IMPLEMENTATION_STATUS.md)
+
+---
+
+## ⚖️ 法律和伦理
+
+**重要提醒**：
 
 本项目涉及：
-
 - 肖像权和声音权
 - 生物识别信息
 - 个人信息保护
@@ -626,61 +227,67 @@ python tools/build_registry.py
 - AI 合成内容标识
 - 深度伪造滥用风险
 
-**正式上线前必须由目标法域的律师审核以下内容：**
+**免责声明**：
+- 本仓库提供的模板和工具仅供参考，不构成法律建议
+- 使用者需自行承担合规责任
+- 正式使用前必须咨询法律专业人士
 
-- `policies/` 目录下的所有政策
-- `templates/consent/` 目录下的同意书模板
-- `LEGAL_DISCLAIMER.md`
-
-**免责声明：**
-
-本仓库提供的模板和工具仅供参考，不构成法律建议。使用者需自行承担合规责任。
+详见 [LEGAL_DISCLAIMER.md](LEGAL_DISCLAIMER.md)
 
 ---
 
-## 版本信息
+## 📞 联系方式
 
-- 当前版本：**v0.2.0**
-- 发布日期：2026-04-25
-- 状态：草案阶段
-
-查看完整更新日志：[CHANGELOG.md](CHANGELOG.md)
+- 💬 [GitHub Discussions](https://github.com/Digital-Life-Repository-Standard/DLRS/discussions)
+- 🐛 [Issues](https://github.com/Digital-Life-Repository-Standard/DLRS/issues)
+- 📧 安全问题：见 [SECURITY.md](SECURITY.md)
 
 ---
 
-## 相关资源
+## 📄 许可证
 
-- 📖 [完整文档](docs/)
-- 🗺️ [项目路线图](ROADMAP.md) - 长期规划和版本计划
-- 🎯 [实施状态](docs/IMPLEMENTATION_STATUS.md) - 当前完成度总结
-- 📊 [差距分析](docs/GAP_ANALYSIS.md) - 与终极标准的详细对比
-- 🚀 [终极标准](DLRS_ULTIMATE.md) - 完整的行业标准草案
-- 🏗️ [架构设计](docs/architecture.md)
-- ❓ [常见问题](docs/FAQ.md)
-- 🤝 [贡献指南](CONTRIBUTING.md)
-- 🌍 [国际化 (i18n)](docs/i18n/) - 翻译指南和多语言支持
-- 📜 [行为准则](CODE_OF_CONDUCT.md)
-- 🏛️ [治理模型](GOVERNANCE.md)
+本项目采用 [MIT License](LICENSE)。
 
 ---
 
-## 联系方式
+## 🙏 致谢
 
-- 问题反馈：[GitHub Issues](https://github.com/your-org/dlrs-hub/issues)
-- 安全问题：security@example.org
-- 一般咨询：contact@example.org
+感谢所有贡献者和社区成员的支持！
 
 ---
 
-## 许可证
+## 🔗 相关资源
 
-本项目采用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
+- [完整标准草案](DLRS_ULTIMATE.md)
+- [差距分析](docs/GAP_ANALYSIS.md)
+- [实施状态](docs/IMPLEMENTATION_STATUS.md)
+- [项目路线图](ROADMAP.md)
+- [治理模型](GOVERNANCE.md)
+- [行为准则](CODE_OF_CONDUCT.md)
+
+---
+
+## 📌 GitHub About 建议
+
+建议维护者将 GitHub About 设置为：
+
+```
+DLRS: Privacy-first digital life archive standard for consent governance, AI avatars, and digital legacy records | 数字生命仓库标准
+```
+
+建议添加的 Topics：
+```
+digital-life, digital-human, ai-avatar, digital-legacy, digital-identity, 
+privacy, privacy-by-design, consent-management, data-governance, 
+data-portability, schema, json-schema, standard, open-standard, 
+archive, template-repository, ai-ethics
+```
 
 ---
 
 <div align="center">
 
-**让数字生命更安全、更透明、更可控**
+**让数字生命档案更安全、更透明、更可控**
 
 Made with ❤️ by DLRS Community
 
